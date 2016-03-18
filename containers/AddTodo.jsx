@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addTodo } from '../actions'
 
 class AddTodo extends React.Component {
-  constructor(props) {
+  constructor(props, ...args) {
     super(props)
 
     this.props = props
@@ -11,19 +11,22 @@ class AddTodo extends React.Component {
   }
 
   onSubmit(event) {
+    let textInput = this.refs.todoText
     event.preventDefault()
-    if (this.input.value.trim() === '') {
+
+    textInput.value.trim()
+    if (textInput.value === '') {
       return
     }
-    this.props.dispatch(addTodo(this.input.value))
-    this.input.value = ''
+    this.props.dispatch(addTodo(textInput.value))
+    textInput.value = ''
   }
 
   render() {
     return (
       <div>
         <form onSubmit={event => this.onSubmit(event)}>
-          <input ref={node => this.input = node} />
+          <input ref='todoText' />
           <button type='submit'>
             Add Todo
           </button>
