@@ -1,9 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions'
 
 class AddTodo extends React.Component {
-  constructor(props, ...args) {
+  constructor(props) {
     super(props)
 
     this.props = props
