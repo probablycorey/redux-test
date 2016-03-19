@@ -2,23 +2,25 @@ import expect from 'expect'
 import todos from '../../reducers/todos'
 
 describe('todos reducer', () => {
-  it('should handle initial state', () => {
+  it('creates the initial state', () => {
     expect(
       todos(undefined, {})
     ).toEqual([])
   })
 
-  it('should handle ADD_TODO', () => {
+  it('handles the ADD_TODO event', () => {
     expect(
       todos([], {
         type: 'ADD_TODO',
         text: 'Run the tests',
+        timeRemaining: 12,
         id: 0
       })
     ).toEqual([
       {
         text: 'Run the tests',
         completed: false,
+        timeRemaining: 12,
         id: 0
       }
     ])
@@ -28,54 +30,26 @@ describe('todos reducer', () => {
         {
           text: 'Run the tests',
           completed: false,
+          timeRemaining: 3,
           id: 0
         }
       ], {
         type: 'ADD_TODO',
         text: 'Use Redux',
+        timeRemaining: 1,
         id: 1
       })
     ).toEqual([
       {
         text: 'Run the tests',
         completed: false,
+        timeRemaining: 3,
         id: 0
       }, {
         text: 'Use Redux',
         completed: false,
+        timeRemaining: 1,
         id: 1
-      }
-    ])
-
-    expect(
-      todos([
-        {
-          text: 'Run the tests',
-          completed: false,
-          id: 0
-        }, {
-          text: 'Use Redux',
-          completed: false,
-          id: 1
-        }
-      ], {
-        type: 'ADD_TODO',
-        text: 'Fix the tests',
-        id: 2
-      })
-    ).toEqual([
-      {
-        text: 'Run the tests',
-        completed: false,
-        id: 0
-      }, {
-        text: 'Use Redux',
-        completed: false,
-        id: 1
-      }, {
-        text: 'Fix the tests',
-        completed: false,
-        id: 2
       }
     ])
   })

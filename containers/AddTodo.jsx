@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { addTodo } from '../actions'
 
 class AddTodo extends React.Component {
   constructor(props) {
@@ -9,15 +10,26 @@ class AddTodo extends React.Component {
     this.state = {}
   }
 
+  componentDidMount() {
+    this.refs.text.focus()
+  }
+
   onSubmit(event) {
-    let textInput = this.refs.todoText
     event.preventDefault()
 
+    let textInput = this.refs.text
+    let timeRemaining = this.refs.timeRemaining
+
     textInput.value.trim()
-    if (textInput.value === '') {
+    timeRemaining.value.trim()
+    if (textInput.value === '' || timeRemaining.value === '') {
       return
     }
-    this.props.dispatch(addTodo(textInput.value))
+
+    this.props.dispatch(addTodo({
+      text: textInput.value,
+      timeRemaining: parseInt(timeRemaining.value)
+    }))
     textInput.value = ''
   }
 
@@ -25,7 +37,8 @@ class AddTodo extends React.Component {
     return (
       <div>
         <form onSubmit={event => this.onSubmit(event)}>
-          <input ref='todoText' />
+          <input ref='text' placeholder='task' />
+          <input ref='timeRemaining' defaultValue='20' />
           <button type='submit'>
             Add Todo
           </button>

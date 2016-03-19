@@ -4,6 +4,7 @@ const todo = (state, action) => {
       return {
         id: action.id,
         text: action.text,
+        timeRemaining: action.timeRemaining,
         completed: false
       }
     case 'TOGGLE_TODO':
