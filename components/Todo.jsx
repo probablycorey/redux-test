@@ -3,9 +3,7 @@ import React, { PropTypes } from 'react'
 class Todo extends React.Component {
   constructor(props) {
     super(props)
-    this.onClick = props.onClick
-    this.completed = props.completed
-    this.text = props.text
+    Object.assign(this, props)
   }
 
   render() {
@@ -13,7 +11,7 @@ class Todo extends React.Component {
     const style = { textDecoration: this.completed ? 'line-through' : 'none' }
     return (
       <li onClick={onClick} style={style}>
-        {this.text}
+        {this.text} : {this.timeRemaining} mins
       </li>
     )
   }
@@ -22,7 +20,8 @@ class Todo extends React.Component {
 Todo.propTypes = {
   onClick: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  timeRemaining: PropTypes.number.isRequired
 }
 
 export default Todo
