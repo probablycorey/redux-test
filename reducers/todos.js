@@ -27,7 +27,7 @@ const todos = (todos, action) => {
     case 'TOGGLE_TODO':
       return todos.map(t => todo(t, action) )
     default:
-      return todos
+      return todos || []
   }
 }
 
