@@ -4,15 +4,20 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils'
 
-import AddTodo from '../../containers/AddTodo.jsx'
-import todoApp from '../../reducers'
+import AddTodo from '../containers/AddTodo.jsx'
+import todoApp from '../reducers'
 
 describe('AddTodo', () => {
-  it('adds a task', () => {
-    const store = createStore(todoApp)
+  let store
+  let component
 
+  beforeEach( () => {
+    store = createStore(todoApp)
     const componentWrapper = TestUtils.renderIntoDocument(<AddTodo store={store}/>)
-    const component = componentWrapper.getWrappedInstance() // redux-react wraps the component
+    component = componentWrapper.getWrappedInstance() // redux-react wraps the component
+  })
+
+  it('adds a task', () => {
     const element = ReactDOM.findDOMNode(component)
     const button = element.querySelector('button')
     expect(button).toExist()

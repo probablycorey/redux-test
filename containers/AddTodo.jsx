@@ -26,10 +26,12 @@ class AddTodo extends React.Component {
       return
     }
 
-    this.props.dispatch(addTodo({
+    const action = addTodo({
       text: textInput.value,
       timeRemaining: parseInt(timeRemaining.value)
-    }))
+    })
+
+    this.props.dispatch(action)
     textInput.value = ''
   }
 

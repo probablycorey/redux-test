@@ -1,4 +1,4 @@
-const todo = (state, action) => {
+const todo = (todo, action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return {
@@ -8,31 +8,26 @@ const todo = (state, action) => {
         completed: false
       }
     case 'TOGGLE_TODO':
-      if (state.id !== action.id) {
-        return state
+      if (todo.id !== action.id) {
+        return todo
       }
 
-      return Object.assign({}, state, {
-        completed: !state.completed
+      return Object.assign({}, todo, {
+        completed: !todo.completed
       })
     default:
-      return state
+      return todo
   }
 }
 
-const todos = (state = [], action) => {
+const todos = (todos, action) => {
   switch (action.type) {
     case 'ADD_TODO':
-      return [
-        ...state,
-        todo(undefined, action)
-      ]
+      return [...todos, todo(undefined, action)]
     case 'TOGGLE_TODO':
-      return state.map(t =>
-        todo(t, action)
-      )
+      return todos.map(t => todo(t, action) )
     default:
-      return state
+      return todos
   }
 }
 
