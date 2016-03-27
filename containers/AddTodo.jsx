@@ -46,6 +46,7 @@ class AddTodo extends React.Component {
   }
 }
 
+// The `withRef` option is only needed for tests
 AddTodo = connect(null, null, null, {withRef: true})(AddTodo)
 
 export default AddTodo
