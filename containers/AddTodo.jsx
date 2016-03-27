@@ -39,15 +39,13 @@ class AddTodo extends React.Component {
         <form onSubmit={event => this.onSubmit(event)}>
           <input ref='text' placeholder='task' />
           <input ref='timeRemaining' defaultValue='20' />
-          <button type='submit'>
-            Add Todo
-          </button>
+          <button type='submit'>Add Todo</button>
         </form>
       </div>
     )
   }
 }
 
-AddTodo = connect()(AddTodo)
+AddTodo = connect(null, null, null, {withRef: true})(AddTodo)
 
 export default AddTodo

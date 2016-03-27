@@ -4,7 +4,7 @@
   "description": "Redux Todos example",
   "scripts": {
     "start": "webpack && open ./index.html",
-    "test": "cross-env NODE_ENV=test mocha --recursive --compilers jsx:babel-register",
+    "test": "mocha --recursive --compilers jsx:babel-register",
     "test:watch": "npm test -- --watch"
   },
   "repository": {
@@ -32,6 +32,7 @@
     "babel-register": "^6.3.13",
     "cross-env": "^1.0.7",
     "expect": "^1.8.0",
+    "jsdom": "^8.1.0",
     "mocha": "^2.2.5",
     "node-libs-browser": "^0.5.2",
     "react-addons-test-utils": "^0.14.7",
