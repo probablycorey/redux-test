@@ -1,6 +1,7 @@
 const localStorageKey = "my-list"
 
 export const remoteMiddleware = store => next => action => {
+  console.log(action)
   const result = next(action)
   localStorage.setItem(localStorageKey, JSON.stringify(store.getState()))
   return result

@@ -1,17 +1,16 @@
 import React, { PropTypes } from 'react'
 import Todo from './Todo.jsx'
 
-const TodoList = ({ todos, onTodoClick }) => (
-  <ul>
-    {todos.map(todo =>
-      <Todo
-        key={todo.id}
-        {...todo}
-        onClick={() => onTodoClick(todo.id)}
-      />
-    )}
-  </ul>
-)
+const TodoList = ({ todos, onTodoClick, onStartClick }) => {
+  const todoElements = todos.map(todo => {
+    const onStart = (event) => onStartClick(todo.id)
+    return <Todo key={todo.id} {...todo} onStart={onStart} />
+  })
+
+  return (
+    <ul>{todoElements}</ul>
+  )
+}
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
@@ -19,7 +18,7 @@ TodoList.propTypes = {
     completed: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired
   }).isRequired).isRequired,
-  onTodoClick: PropTypes.func.isRequired
+  onStartClick: PropTypes.func.isRequired
 }
 
 export default TodoList

@@ -9,6 +9,13 @@ export const addTodo = ({ text, timeRemaining }) => {
   }
 }
 
+export const startTodo = (id) => {
+  return {
+    type: 'START_TODO',
+    id
+  }
+}
+
 export const setVisibilityFilter = (filter) => {
   return {
     type: 'SET_VISIBILITY_FILTER',

@@ -12,7 +12,12 @@ describe('AddTodo', () => {
   let component
 
   beforeEach( () => {
-    store = createStore(todoApp)
+    const initialState = {
+      todos: [
+        { id: "1", text: "1", timeRemaining: 1, complete: false }
+      ]
+    }
+    store = createStore(todoApp, initialState)
     const componentWrapper = TestUtils.renderIntoDocument(<AddTodo store={store}/>)
     component = componentWrapper.getWrappedInstance() // redux-react wraps the component
   })
@@ -27,9 +32,9 @@ describe('AddTodo', () => {
     TestUtils.Simulate.submit(button)
 
     const todos = store.getState().todos
-    expect(todos.length).toEqual(1)
-    expect(todos[0].text).toEqual('wow')
-    expect(todos[0].timeRemaining).toEqual(2)
-    expect(todos[0].completed).toEqual(false)
+    expect(todos.length).toEqual(2)
+    const todo = todos.find(({text}) => text === "wow")
+    expect(todo.timeRemaining).toEqual(2)
+    expect(todo.completed).toEqual(false)
   })
 })

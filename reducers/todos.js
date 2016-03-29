@@ -8,12 +8,13 @@ const todo = (todo, action) => {
         completed: false
       }
     case 'TOGGLE_TODO':
-      if (todo.id !== action.id) {
-        return todo
-      }
-
       return Object.assign({}, todo, {
         completed: !todo.completed
+      })
+    case 'START_TODO':
+      return Object.assign({}, todo, {
+        timeRemaining: 0,
+        completed: true
       })
     default:
       return todo
@@ -25,7 +26,10 @@ const todos = (todos, action) => {
     case 'ADD_TODO':
       return [...todos, todo(undefined, action)]
     case 'TOGGLE_TODO':
-      return todos.map(t => todo(t, action) )
+    case 'START_TODO':
+      return todos.map((t) => {
+        return t.id === action.id ? todo(t, action) : t
+      })
     default:
       return todos || []
   }
