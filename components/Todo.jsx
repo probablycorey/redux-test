@@ -1,20 +1,14 @@
 import React, { PropTypes } from 'react'
 
-class Todo extends React.Component {
-  constructor(props) {
-    super(props)
-    Object.assign(this, props)
-  }
 
-  render() {
-    const onClick = event => this.onClick(event)
-    const style = { textDecoration: this.completed ? 'line-through' : 'none' }
-    return (
-      <li onClick={onClick} style={style}>
-        {this.text} : {this.timeRemaining} mins
-      </li>
-    )
-  }
+const Todo = ({ onClick, completed, text, timeRemaining }) => {
+  const style = { textDecoration: completed ? 'line-through' : 'none' }
+
+  return (
+    <li onClick={onClick} style={style}>
+      {text} : {timeRemaining} mins
+    </li>
+  )
 }
 
 Todo.propTypes = {
